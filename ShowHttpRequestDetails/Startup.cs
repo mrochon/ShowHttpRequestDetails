@@ -34,13 +34,13 @@ namespace ShowHttpRequestDetails
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("<head><title>Http request details</title></head><body>");
-                    await context.Response.WriteAsync("<h3>Headers</h3>");
+                    await context.Response.WriteAsync("<h3>Headers</h3><table><tr><th>Id</th><th>Value</th></tr>");
                     foreach (var header in context.Request.Headers)
                     {
-                        await context.Response.WriteAsync($"<h4>{header.Key}</h4>");
-                        await context.Response.WriteAsync($"<p>{header.Value}</p>");
+                        await context.Response.WriteAsync($"<tr><td>{header.Key}</td>");
+                        await context.Response.WriteAsync($"<td>{header.Value}</td></tr>");
                     }
-                    await context.Response.WriteAsync("</body>");
+                    await context.Response.WriteAsync("</table></body>");
                 });
             });
         }
